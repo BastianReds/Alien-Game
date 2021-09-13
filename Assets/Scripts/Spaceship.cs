@@ -7,13 +7,14 @@ public class Spaceship : MonoBehaviour
     [SerializeField] float speed;
     [SerializeField] GameObject disparo;
     [SerializeField] GameObject rafaga;
+    [SerializeField] GameObject automatico;
     [SerializeField] float cadencia;
     [SerializeField] int municion;
 
     float minX, maxX, minY, maxY;
     float contador;
     float nextFire = 0;
-    bool modoDisp = true;
+    int modoDisp = 1;
 
     public bool gamePaused = false;
 
@@ -39,22 +40,50 @@ public class Spaceship : MonoBehaviour
         { 
             Mover();
 
-            if (modoDisp)
+            switch (modoDisp)
+            {
+                case 1:
+                    Disparar();
+                    break;
+
+                case 2:
+                    Rafaga();
+                    break;
+
+                case 3:
+                    Automatico();
+                    break;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha1))
+            {
+                modoDisp = 1;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha2))
+            {
+                modoDisp = 2;
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha3))
+            {
+                modoDisp = 3;
+            }
+
+            /*if (modoDisp)
                 Disparar();
 
-            else
+            else 
                 Rafaga();
-
+       
             if (Input.GetKeyDown(KeyCode.F))
             {
                 if (modoDisp)
                     modoDisp = false;
                 else
-                    modoDisp = true;
-            }
-        }
-        
-        
+                    modoDisp = true;               
+            }*/
+        }             
     }
 
     void Mover()
@@ -86,9 +115,9 @@ public class Spaceship : MonoBehaviour
         {
             Instantiate(disparo, transform.position - new Vector3(0, 0.3f, 0), transform.rotation);
             nextFire = Time.time + cadencia;
-        
         }
     }
+
     void Rafaga()
     {
         if (Input.GetKey(KeyCode.Space) && Time.time >= nextFire)
@@ -104,6 +133,26 @@ public class Spaceship : MonoBehaviour
                 {
                     nextFire = Time.time + 2;
                     municion = 5;
+                }
+            }
+        }
+    }
+
+    void Automatico()
+    {
+        if (Input.GetKey(KeyCode.Space) && Time.time >= nextFire)
+        {
+            if (municion > 0)
+            {
+                Instantiate(automatico, transform.position - new Vector3(0, 0.3f, 0), transform.rotation);
+                nextFire = Time.time + cadencia / 3;
+
+                municion--;
+
+                if (municion == 0)
+                {
+                    nextFire = Time.time + 4;
+                    municion = 8;
                 }
             }
         }

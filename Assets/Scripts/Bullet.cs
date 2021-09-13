@@ -18,7 +18,7 @@ public class Bullet : MonoBehaviour
         transform.Rotate(new Vector3(0,0,speed * Time.deltaTime));
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         Destroy(this.gameObject);
     }

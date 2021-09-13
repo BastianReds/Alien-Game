@@ -1,15 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Animal : MonoBehaviour
 {
     [SerializeField] float speed;
     [SerializeField] bool movingRight;
     [SerializeField] GameManager gm;
-
+    [SerializeField] GameObject animal;
+    
     float minX, maxX;
-    int puntosDeVida = 5;
+    public float vida;
+    public float vidaMaxima;
+
+    public GameObject barraDeVidaUI;
+    public Slider barra;
 
     // Start is called before the first frame update
     void Start()
@@ -19,12 +25,29 @@ public class Animal : MonoBehaviour
 
         maxX = esquinaSupDer.x;
         minX = esquinaInfIzq.x;
+
+        vida = vidaMaxima;
+        barra.value = CalcularVida();
     }
 
     // Update is called once per frame
     void Update()
     {
         MoveEnemy();
+
+        //this.transform.t
+
+        barra.value = CalcularVida();
+
+        if (vida < vidaMaxima)
+        {
+            barraDeVidaUI.SetActive(true);
+        }
+
+        if (vida > vidaMaxima)
+        {
+            vida = vidaMaxima;
+        }
     }
 
     void MoveEnemy()
@@ -44,16 +67,40 @@ public class Animal : MonoBehaviour
         {
             movingRight = true;
         }
+
+        /*if (indicador == false)
+        {
+            
+        }
+        else
+        {
+            if (movingRight)
+            {
+                transform.Translate(new Vector2((speed * Time.deltaTime)/2, 0), Space.World);
+            }
+            else
+                transform.Translate(new Vector2((-speed * Time.deltaTime)/2, 0), Space.World);
+
+            GameObject gravedad = gravedad.gameObject; 
+        }*/
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
         GameObject colisionando = collision.gameObject;
-        if(colisionando.tag == "Disparo" || colisionando.tag == "Rafaga")
+        if(colisionando.tag == "Disparo" || colisionando.tag == "Rafaga" || colisionando.tag == "Automatico")
         {
-            gm.ReducirNumEnemies();
-            Destroy(this.gameObject);
+            vida--;
+            if (vida <= 0)
+            {
+                gm.ReducirNumEnemies();
+                Destroy(this.gameObject);
+            }                                 
         }
+    }
 
+    float CalcularVida()
+    {
+        return vida / vidaMaxima; 
     }
 }

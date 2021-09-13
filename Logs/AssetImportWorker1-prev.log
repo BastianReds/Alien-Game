@@ -15,11 +15,11 @@ C:/Projects/Unity/Alien Game
 -logFile
 Logs/AssetImportWorker1.log
 -srvPort
-61060
+60508
 Successfully changed project path to: C:/Projects/Unity/Alien Game
 C:/Projects/Unity/Alien Game
 Using Asset Import Pipeline V2.
-Refreshing native plugins compatible for Editor in 186.18 ms, found 4 plugins.
+Refreshing native plugins compatible for Editor in 149.19 ms, found 4 plugins.
 Preloading 0 native plugins for Editor in 0.00 ms.
 Initialize engine version: 2021.1.16f1 (5fa502fca597)
 [Subsystems] Discovering subsystems at path B:/Archivos/Unity/2021.1.16f1/Editor/Data/Resources/UnitySubsystems
@@ -35,5 +35,5 @@ Initialize mono
 Mono path[0] = 'B:/Archivos/Unity/2021.1.16f1/Editor/Data/Managed'
 Mono path[1] = 'B:/Archivos/Unity/2021.1.16f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
 Mono config path = 'B:/Archivos/Unity/2021.1.16f1/Editor/Data/MonoBleedingEdge/etc'
-Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56860
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56256
 Begin MonoManager ReloadAssembly
