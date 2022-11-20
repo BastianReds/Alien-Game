@@ -1,4 +1,4 @@
 # Alien-Game
- Primer videojuego 2D creado en Unity
+ First 2D video game created in Unity
  
- Proyecto del primer corte de Programación de Videojuegos en 2D de la Universidad Sergio Arboleda
+ Project of the first cut of 2D Video Game Programming at Universidad Sergio Arboleda.
